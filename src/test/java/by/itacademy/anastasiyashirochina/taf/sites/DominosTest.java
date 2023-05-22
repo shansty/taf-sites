@@ -16,12 +16,12 @@ public class DominosTest {
         driver.get("https://dominos.by/");
         WebElement closePopUp = driver.findElement(By.cssSelector(dominosPage.closePopUpSelector));
         closePopUp.click();
+        WebElement submitEnterButton = driver.findElement(By.xpath(dominosPage.submitEnterButtonXpath));
+        submitEnterButton.click();
     }
 
     @Test
     public void testDominosWithIncorrectEmailAndEmptyPassword() {
-        WebElement submitEnterButton = driver.findElement(By.xpath(dominosPage.submitEnterButtonXpath));
-        submitEnterButton.click();
         WebElement inputEmail = driver.findElement(By.xpath(dominosPage.inputEmailXpath));
         inputEmail.sendKeys("email");
         WebElement inputPassword = driver.findElement(By.xpath(dominosPage.inputPasswordXpath));
@@ -32,8 +32,6 @@ public class DominosTest {
 
     @Test
     public void testDominosWithCorrectEmailAndEmptyPassword() {
-        WebElement submitEnterButton = driver.findElement(By.xpath(dominosPage.submitEnterButtonXpath));
-        submitEnterButton.click();
         WebElement inputEmail = driver.findElement(By.xpath(dominosPage.inputEmailXpath));
         inputEmail.sendKeys("test@mail.com");
         WebElement inputPassword = driver.findElement(By.xpath(dominosPage.inputPasswordXpath));
