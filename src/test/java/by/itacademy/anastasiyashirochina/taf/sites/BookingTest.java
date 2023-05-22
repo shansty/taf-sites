@@ -17,17 +17,16 @@ public class BookingTest {
     public void testPreparing() throws InterruptedException {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
+        options.addArguments("--disable-cache");
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(ChromeOptions.CAPABILITY, options);
         options.merge(capabilities);
         driver = new ChromeDriver(options);
         driver.get("https://www.booking.com/");
-        driver.manage().window().maximize();
         Thread.sleep(1000);
         WebElement closePopUp = driver.findElement(By.cssSelector(bookingPage.submitSignInAndRegistrationPopUpSelector));
         closePopUp.click();
     }
-
 
     @Test
     public void testBookingWithEmptyEmail() {
