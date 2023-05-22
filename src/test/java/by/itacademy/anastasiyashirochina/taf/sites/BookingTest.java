@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class BookingTest {
     ChromeDriver driver;
@@ -14,11 +15,14 @@ public class BookingTest {
 
     @BeforeEach
     public void testPreparing() throws InterruptedException {
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--incognito");
-        chromeOptions.addArguments("--disable-cache");
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--incognito");
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+        options.merge(capabilities);
+        driver = new ChromeDriver(options);
         driver.get("https://www.booking.com/");
+        driver.manage().window().maximize();
         Thread.sleep(1000);
         WebElement closePopUp = driver.findElement(By.cssSelector(bookingPage.submitSignInAndRegistrationPopUpSelector));
         closePopUp.click();
@@ -80,7 +84,9 @@ public class BookingTest {
         submitPasswordButton.click();
     }
     @AfterEach
-    public void closeDriver() {
+    public void closeDriver() throws InterruptedException {
+        Thread.sleep(1000);
         driver.quit();
+        Thread.sleep(1000);
     }
 }
