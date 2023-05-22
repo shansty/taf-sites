@@ -9,31 +9,32 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class BookingTest {
-    ChromeDriver driver = new ChromeDriver();
+    ChromeDriver driver;
     BookingPage bookingPage = new BookingPage();
 
     @BeforeEach
-    public void testPreparing() {
+    public void testPreparing() throws InterruptedException {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--incognito");
         chromeOptions.addArguments("--disable-cache");
+        driver = new ChromeDriver();
         driver.get("https://www.booking.com/");
+        Thread.sleep(1000);
+        WebElement closePopUp = driver.findElement(By.cssSelector(bookingPage.submitSignInAndRegistrationPopUpSelector));
+        closePopUp.click();
     }
 
 
     @Test
     public void testBookingWithEmptyEmail() {
-        WebElement submitButtonEnter = driver.findElement(By.xpath(bookingPage.submitButtonEnterXpath));
-        submitButtonEnter.click();
+       WebElement submitButtonEnter = driver.findElement(By.xpath(bookingPage.submitButtonEnterXpath));
+       submitButtonEnter.click();
         WebElement submitEmailButton = driver.findElement(By.xpath(bookingPage.submitEmailButtonXpath));
         submitEmailButton.click();
     }
 
     @Test
-    public void testBookingWithIncorrectEmail() throws InterruptedException {
-        Thread.sleep(1000);
-        WebElement closePopUp = driver.findElement(By.cssSelector(bookingPage.closePopUpSelector));
-        closePopUp.click();
+    public void testBookingWithIncorrectEmail() {
         WebElement submitButtonEnter = driver.findElement(By.xpath(bookingPage.submitButtonEnterXpath));
         submitButtonEnter.click();
         WebElement inputEmail = driver.findElement(By.xpath(bookingPage.inputEmailXpath));
@@ -43,10 +44,7 @@ public class BookingTest {
     }
 
     @Test
-    public void testBookingWithCorrectEmail() throws InterruptedException {
-        Thread.sleep(1000);
-        WebElement closePopUp = driver.findElement(By.cssSelector(bookingPage.closePopUpSelector));
-        closePopUp.click();
+    public void testBookingWithCorrectEmail() {
         WebElement submitButtonEnter = driver.findElement(By.xpath(bookingPage.submitButtonEnterXpath));
         submitButtonEnter.click();
         WebElement inputEmail = driver.findElement(By.xpath(bookingPage.inputEmailXpath));
@@ -57,9 +55,6 @@ public class BookingTest {
 
     @Test
     public void testBookingWithCorrectEmailAndEmptyPassword() throws InterruptedException {
-        Thread.sleep(1000);
-        WebElement closePopUp = driver.findElement(By.cssSelector(bookingPage.closePopUpSelector));
-        closePopUp.click();
         WebElement submitButtonEnter = driver.findElement(By.xpath(bookingPage.submitButtonEnterXpath));
         submitButtonEnter.click();
         WebElement inputEmail = driver.findElement(By.xpath(bookingPage.inputEmailXpath));
@@ -72,9 +67,6 @@ public class BookingTest {
     }
     @Test
     public void testBookingWithCorrectEmailAndCorrectPassword() throws InterruptedException {
-        Thread.sleep(1000);
-        WebElement closePopUp = driver.findElement(By.cssSelector(bookingPage.closePopUpSelector));
-        closePopUp.click();
         WebElement submitButtonEnter = driver.findElement(By.xpath(bookingPage.submitButtonEnterXpath));
         submitButtonEnter.click();
         WebElement inputEmail = driver.findElement(By.xpath(bookingPage.inputEmailXpath));
