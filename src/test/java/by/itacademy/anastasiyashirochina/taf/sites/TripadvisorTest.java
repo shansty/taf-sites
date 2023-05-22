@@ -14,7 +14,7 @@ public class TripadvisorTest {
     TripadvisorPage tripadvisorPage = new TripadvisorPage();
 
     @BeforeEach
-    public void testPreparing(){
+    public void warmUp(){
         driver.get("https://www.tripadvisor.com/");
     }
 
@@ -75,7 +75,7 @@ public class TripadvisorTest {
     }
 
     @AfterEach
-    public void closeDriver() {
+    public void tearsDown() {
         driver.quit();
     }
 }

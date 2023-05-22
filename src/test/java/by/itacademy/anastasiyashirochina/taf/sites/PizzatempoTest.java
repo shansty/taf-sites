@@ -11,7 +11,7 @@ public class PizzatempoTest {
     ChromeDriver driver = new ChromeDriver();
     PizzatempoPage pizzatempoPage = new PizzatempoPage();
     @BeforeEach
-    public void testPreparing(){
+    public void warmUp(){
         driver.get("https://www.pizzatempo.by/");
     }
 @Test
@@ -50,7 +50,7 @@ public class PizzatempoTest {
         submitSignInButton.click();
     }
 @AfterEach
-    public void closeDriver(){
+    public void tearsDown(){
         driver.quit();
 }
 }

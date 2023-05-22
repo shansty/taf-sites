@@ -14,7 +14,7 @@ public class BookingTest {
     BookingPage bookingPage = new BookingPage();
 
     @BeforeEach
-    public void testPreparing() throws InterruptedException {
+    public void warmUp() throws InterruptedException {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
         options.addArguments("--disable-cache");
@@ -83,7 +83,7 @@ public class BookingTest {
         submitPasswordButton.click();
     }
     @AfterEach
-    public void closeDriver() throws InterruptedException {
+    public void tearsDown() throws InterruptedException {
         Thread.sleep(1000);
         driver.quit();
         Thread.sleep(1000);

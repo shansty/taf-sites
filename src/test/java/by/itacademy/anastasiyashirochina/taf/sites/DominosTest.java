@@ -12,7 +12,7 @@ public class DominosTest {
     DominosPage dominosPage = new DominosPage();
 
     @BeforeEach
-    public void testPreparing() {
+    public void warmUp() {
         driver.get("https://dominos.by/");
         WebElement closePopUp = driver.findElement(By.cssSelector(dominosPage.closePopUpSelector));
         closePopUp.click();
@@ -41,7 +41,7 @@ public class DominosTest {
     }
 
     @AfterEach
-    public void closeDriver() {
+    public void tearsDown() {
         driver.quit();
     }
 }
