@@ -1,13 +1,11 @@
 package by.itacademy.anastasiyashirochina.taf.sites;
 
-import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
 public class TripadvisorTest {
     ChromeDriver driver = new ChromeDriver();
