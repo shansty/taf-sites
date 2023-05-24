@@ -8,49 +8,48 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class PizzatempoTest {
-    ChromeDriver driver = new ChromeDriver();
-    PizzatempoPage pizzatempoPage = new PizzatempoPage();
+    ChromeDriver driver;
+    PizzatempoPage pizzatempoPage;
+
     @BeforeEach
-    public void warmUp(){
+    public void warmUp() {
+        driver = new ChromeDriver();
+        pizzatempoPage = new PizzatempoPage(driver);
         driver.get("https://www.pizzatempo.by/");
     }
-@Test
-    public void testPizzatempoWithEmptyEmailAndPassword(){
-    WebElement submitSignInButton = driver.findElement(By.xpath(pizzatempoPage.submitSignInButtonXpath));
-    submitSignInButton.click();
-}
+
+    @Test
+    public void testPizzatempoWithEmptyEmailAndPassword() {
+        pizzatempoPage.clickSubmitSignInButton();
+    }
+
     @Test
     public void testPizzatempoWithIncorrectEmail() {
-        WebElement inputEmail = driver.findElement(By.xpath(pizzatempoPage.inputEmailXpath));
-        inputEmail.sendKeys("email");
-        WebElement submitSignInButton = driver.findElement(By.xpath(pizzatempoPage.submitSignInButtonXpath));
-        submitSignInButton.click();
+        pizzatempoPage.sendKeysInputEmail("email");
+        pizzatempoPage.clickSubmitSignInButton();
     }
+
     @Test
     public void testPizzatempoWithEmptyEmailAndSomePassword() {
-        WebElement inputPassword = driver.findElement(By.xpath(pizzatempoPage.inputPasswordXpath));
-        inputPassword.sendKeys("some password");
-        WebElement submitSignInButton = driver.findElement(By.xpath(pizzatempoPage.submitSignInButtonXpath));
-        submitSignInButton.click();
+        pizzatempoPage.sendKeysInputPassword(PizzatempoPage.generatePassword(8));
+        pizzatempoPage.clickSubmitSignInButton();
     }
+
     @Test
     public void testPizzatempoWithCorrectEmailAndEmptyPassword() {
-        WebElement inputEmail = driver.findElement(By.xpath(pizzatempoPage.inputEmailXpath));
-        inputEmail.sendKeys("test@mail.com");
-        WebElement submitSignInButton = driver.findElement(By.xpath(pizzatempoPage.submitSignInButtonXpath));
-        submitSignInButton.click();
+        pizzatempoPage.sendKeysInputEmail(PizzatempoPage.generateEmail(9));
+        pizzatempoPage.clickSubmitSignInButton();
     }
+
     @Test
     public void testPizzatempoWithCorrectEmailAndPassword() {
-        WebElement inputEmail = driver.findElement(By.xpath(pizzatempoPage.inputEmailXpath));
-        inputEmail.sendKeys("test@mail.com");
-        WebElement inputPassword = driver.findElement(By.xpath(pizzatempoPage.inputPasswordXpath));
-        inputPassword.sendKeys("some password");
-        WebElement submitSignInButton = driver.findElement(By.xpath(pizzatempoPage.submitSignInButtonXpath));
-        submitSignInButton.click();
+        pizzatempoPage.sendKeysInputEmail(PizzatempoPage.generateEmail(5));
+        pizzatempoPage.sendKeysInputPassword(PizzatempoPage.generatePassword(6));
+        pizzatempoPage.clickSubmitSignInButton();
     }
-@AfterEach
-    public void tearsDown(){
+
+    @AfterEach
+    public void tearsDown() {
         driver.quit();
-}
+    }
 }
