@@ -12,8 +12,8 @@ public class PizzatempoPage {
     private String submitSignInButtonXpath = "/html/body/div/div[1]/form/p[2]/input[2]";
     private ChromeDriver driver;
 
-    public PizzatempoPage(ChromeDriver newDriver) {
-        driver = newDriver;
+    public PizzatempoPage(ChromeDriver driver) {
+        this.driver = driver;
     }
 
     public void clickSubmitSignInButton() {
@@ -39,7 +39,7 @@ public class PizzatempoPage {
         }
         return result + "@gmail.com";
     }
-    public static String generatePassword(int length) {
+    public static String generatePasswordOrIncorrectEmail(int length) {
         String[] strings = {"a", "b", "c", "f", "3", "5", "9"};
         String result = "";
         for (int i = 0; i < length; i++) {

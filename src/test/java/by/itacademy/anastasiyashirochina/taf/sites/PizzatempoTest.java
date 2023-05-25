@@ -25,13 +25,13 @@ public class PizzatempoTest {
 
     @Test
     public void testPizzatempoWithIncorrectEmail() {
-        pizzatempoPage.sendKeysInputEmail("email");
+        pizzatempoPage.sendKeysInputEmail(PizzatempoPage.generatePasswordOrIncorrectEmail(6));
         pizzatempoPage.clickSubmitSignInButton();
     }
 
     @Test
     public void testPizzatempoWithEmptyEmailAndSomePassword() {
-        pizzatempoPage.sendKeysInputPassword(PizzatempoPage.generatePassword(8));
+        pizzatempoPage.sendKeysInputPassword(PizzatempoPage.generatePasswordOrIncorrectEmail(8));
         pizzatempoPage.clickSubmitSignInButton();
     }
 
@@ -44,7 +44,7 @@ public class PizzatempoTest {
     @Test
     public void testPizzatempoWithCorrectEmailAndPassword() {
         pizzatempoPage.sendKeysInputEmail(PizzatempoPage.generateEmail(5));
-        pizzatempoPage.sendKeysInputPassword(PizzatempoPage.generatePassword(6));
+        pizzatempoPage.sendKeysInputPassword(PizzatempoPage.generatePasswordOrIncorrectEmail(6));
         pizzatempoPage.clickSubmitSignInButton();
     }
 

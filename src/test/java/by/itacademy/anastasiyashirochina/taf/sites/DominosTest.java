@@ -8,36 +8,30 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class DominosTest {
-    ChromeDriver driver = new ChromeDriver();
-    DominosPage dominosPage = new DominosPage();
+    ChromeDriver driver;
+    DominosPage dominosPage;
 
     @BeforeEach
     public void warmUp() {
+        driver = new ChromeDriver();
+        dominosPage = new DominosPage(driver);
         driver.get("https://dominos.by/");
-        WebElement closePopUp = driver.findElement(By.cssSelector(dominosPage.closePopUpSelector));
-        closePopUp.click();
-        WebElement submitEnterButton = driver.findElement(By.xpath(dominosPage.submitEnterButtonXpath));
-        submitEnterButton.click();
+        dominosPage.closePopUpSelector();
+        dominosPage.submitEnterButton();
     }
 
     @Test
     public void testDominosWithIncorrectEmailAndEmptyPassword() {
-        WebElement inputEmail = driver.findElement(By.xpath(dominosPage.inputEmailXpath));
-        inputEmail.sendKeys("email");
-        WebElement inputPassword = driver.findElement(By.xpath(dominosPage.inputPasswordXpath));
-        inputPassword.sendKeys("some password");
-        WebElement submitSignInButton = driver.findElement(By.xpath(dominosPage.submitSignInButtonXpath));
-        submitSignInButton.click();
+        dominosPage.inputEmail(DominosPage.generatePasswordOrIncorrectEmail(4));
+        dominosPage.inputPassword(DominosPage.generatePasswordOrIncorrectEmail(5));
+        dominosPage.submitSignInButton();
     }
 
     @Test
     public void testDominosWithCorrectEmailAndEmptyPassword() {
-        WebElement inputEmail = driver.findElement(By.xpath(dominosPage.inputEmailXpath));
-        inputEmail.sendKeys("test@mail.com");
-        WebElement inputPassword = driver.findElement(By.xpath(dominosPage.inputPasswordXpath));
-        inputPassword.sendKeys("some password");
-        WebElement submitSignInButton = driver.findElement(By.xpath(dominosPage.submitSignInButtonXpath));
-        submitSignInButton.click();
+        dominosPage.inputEmail(DominosPage.generateEmail(9));
+        dominosPage.inputPassword(DominosPage.generatePasswordOrIncorrectEmail(8));
+        dominosPage.submitSignInButton();
     }
 
     @AfterEach
