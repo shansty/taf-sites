@@ -1,51 +1,46 @@
 package by.itacademy.anastasiyashirochina.taf.sites;
 
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class PizzatempoTest {
     ChromeDriver driver;
-    PizzatempoPage pizzatempoPage;
+    PizzatempoStep pizzatempoStep;
+    Faker faker;
 
     @BeforeEach
     public void warmUp() {
         driver = new ChromeDriver();
-        pizzatempoPage = new PizzatempoPage(driver);
-        driver.get("https://www.pizzatempo.by/");
+        pizzatempoStep = new PizzatempoStep(driver);
+        faker = new Faker();
     }
 
     @Test
     public void testPizzatempoWithEmptyEmailAndPassword() {
-        pizzatempoPage.clickSubmitSignInButton();
+        pizzatempoStep.fillFormWithEmailPasswordAndSubmit("", "");
     }
 
     @Test
     public void testPizzatempoWithIncorrectEmail() {
-        pizzatempoPage.sendKeysInputEmail(PizzatempoPage.generatePasswordOrIncorrectEmail(6));
-        pizzatempoPage.clickSubmitSignInButton();
+        pizzatempoStep.fillFormWithEmail(faker.internet().password());
     }
 
     @Test
     public void testPizzatempoWithEmptyEmailAndSomePassword() {
-        pizzatempoPage.sendKeysInputPassword(PizzatempoPage.generatePasswordOrIncorrectEmail(8));
-        pizzatempoPage.clickSubmitSignInButton();
+        pizzatempoStep.fillFormWithEmailPasswordAndSubmit("", faker.internet().password());
     }
 
     @Test
     public void testPizzatempoWithCorrectEmailAndEmptyPassword() {
-        pizzatempoPage.sendKeysInputEmail(PizzatempoPage.generateEmail(9));
-        pizzatempoPage.clickSubmitSignInButton();
+        pizzatempoStep.fillFormWithEmailPasswordAndSubmit(faker.internet().emailAddress(), "");
     }
 
     @Test
     public void testPizzatempoWithCorrectEmailAndPassword() {
-        pizzatempoPage.sendKeysInputEmail(PizzatempoPage.generateEmail(5));
-        pizzatempoPage.sendKeysInputPassword(PizzatempoPage.generatePasswordOrIncorrectEmail(6));
-        pizzatempoPage.clickSubmitSignInButton();
+        pizzatempoStep.fillFormWithEmailPasswordAndSubmit(faker.internet().emailAddress(), faker.internet().password());
     }
 
     @AfterEach

@@ -1,5 +1,6 @@
 package by.itacademy.anastasiyashirochina.taf.sites;
 
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,29 +10,24 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class DominosTest {
     ChromeDriver driver;
-    DominosPage dominosPage;
+    DominosStep dominosStep;
+    Faker faker;
 
     @BeforeEach
     public void warmUp() {
         driver = new ChromeDriver();
-        dominosPage = new DominosPage(driver);
-        driver.get("https://dominos.by/");
-        dominosPage.closePopUpSelector();
-        dominosPage.submitEnterButton();
+        dominosStep = new DominosStep(driver);
+        faker = new Faker();
     }
 
     @Test
     public void testDominosWithIncorrectEmailAndEmptyPassword() {
-        dominosPage.inputEmail(DominosPage.generatePasswordOrIncorrectEmail(4));
-        dominosPage.inputPassword(DominosPage.generatePasswordOrIncorrectEmail(5));
-        dominosPage.submitSignInButton();
+        dominosStep.fillFormWithEmailPasswordAndSubmit(faker.internet().password(), "");
     }
 
     @Test
     public void testDominosWithCorrectEmailAndEmptyPassword() {
-        dominosPage.inputEmail(DominosPage.generateEmail(9));
-        dominosPage.inputPassword(DominosPage.generatePasswordOrIncorrectEmail(8));
-        dominosPage.submitSignInButton();
+        dominosStep.fillFormWithEmailPasswordAndSubmit(faker.internet().emailAddress(), "");
     }
 
     @AfterEach
