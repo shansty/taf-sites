@@ -17,6 +17,7 @@ public class PizzatempoPage {
     public PizzatempoPage(ChromeDriver driver) {
         this.driver = driver;
     }
+
     public void openURL() {
         driver.get(baseURL);
     }
@@ -35,11 +36,18 @@ public class PizzatempoPage {
         WebElement inputPassword = driver.findElement(By.name(inputPasswordName));
         inputPassword.sendKeys(password);
     }
-    public void assertionAlertMessage() {
+
+    public void getAlertMessageAndAssert() {
         WebElement alertMessage = driver.findElement(By.xpath(alertXpath));
         String alertText = alertMessage.getText();
         Assertions.assertEquals("Неверно указано имя пользователя или пароль.\n" + "Ok", alertText);
+    }
 
+
+    public void getAlertAndAssert() {
+        Alert alert = driver.switchTo().alert();
+        String alertMessage = alert.getText();
+        Assertions.assertEquals("Заполните форму", alertMessage);
     }
 }
 
