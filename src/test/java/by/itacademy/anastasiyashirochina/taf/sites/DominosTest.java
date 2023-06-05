@@ -10,22 +10,24 @@ public class DominosTest {
     ChromeDriver driver;
     DominosStep dominosStep;
     Faker faker;
+    Util util;
 
     @BeforeEach
     public void warmUp() {
         driver = new ChromeDriver();
         dominosStep = new DominosStep(driver);
         faker = new Faker();
+        util = new Util();
     }
 
     @Test
     public void testDominosWithIncorrectEmailAndEmptyPassword() {
-        dominosStep.fillFormWithEmailPasswordAndSubmit(faker.internet().password(), "");
+        dominosStep.fillFormWithEmailPasswordAndSubmit(util.generatePasswordOrIncorrectEmail(), "");
     }
 
     @Test
     public void testDominosWithCorrectEmailAndEmptyPassword() {
-        dominosStep.fillFormWithEmailPasswordAndSubmit(faker.internet().emailAddress(), "");
+        dominosStep.fillFormWithEmailPasswordAndSubmit(util.generateEmail(), "");
     }
 
     @AfterEach
