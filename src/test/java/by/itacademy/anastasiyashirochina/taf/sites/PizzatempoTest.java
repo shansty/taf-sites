@@ -2,8 +2,12 @@ package by.itacademy.anastasiyashirochina.taf.sites;
 
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class PizzatempoTest {
@@ -22,27 +26,29 @@ public class PizzatempoTest {
 
     @Test
     public void testPizzatempoWithEmptyEmailAndPassword() {
-        pizzatempoStep.fillFormWithEmailPasswordAndSubmit("", "");
+
+        pizzatempoStep.fillFormWithEmptyData();
     }
 
     @Test
     public void testPizzatempoWithIncorrectEmail() {
-        pizzatempoStep.fillFormWithEmail(util.generatePasswordOrIncorrectEmail());
+        pizzatempoStep.fillFormWithEmailAndEmptyPassword(util.generatePasswordOrIncorrectEmail());
     }
 
     @Test
-    public void testPizzatempoWithEmptyEmailAndSomePassword() {
-        pizzatempoStep.fillFormWithEmailPasswordAndSubmit("", util.generatePasswordOrIncorrectEmail());
+    public void testPizzatempoWithEmptyEmailAndSomePassword()  {
+        pizzatempoStep.fillFormWithPasswordAndEmptyEmail(util.generatePasswordOrIncorrectEmail());
     }
 
     @Test
     public void testPizzatempoWithCorrectEmailAndEmptyPassword() {
-        pizzatempoStep.fillFormWithEmailPasswordAndSubmit(util.generateEmail(), "");
+        pizzatempoStep.fillFormWithEmailAndEmptyPassword(util.generateEmail());
     }
 
     @Test
     public void testPizzatempoWithCorrectEmailAndPassword() {
         pizzatempoStep.fillFormWithEmailPasswordAndSubmit(util.generateEmail(), util.generatePasswordOrIncorrectEmail());
+
     }
 
     @AfterEach

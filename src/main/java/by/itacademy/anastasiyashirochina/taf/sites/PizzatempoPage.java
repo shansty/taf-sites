@@ -1,5 +1,7 @@
 package by.itacademy.anastasiyashirochina.taf.sites;
 
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,6 +12,7 @@ public class PizzatempoPage {
     private String submitSignInButtonName = "astroauth_submit";
     private String baseURL = "https://www.pizzatempo.by/";
     private ChromeDriver driver;
+    private String alertXpath = "//div[@class = 'popupContent']";
 
     public PizzatempoPage(ChromeDriver driver) {
         this.driver = driver;
@@ -31,6 +34,12 @@ public class PizzatempoPage {
     public void sendKeysInputPassword(String password) {
         WebElement inputPassword = driver.findElement(By.name(inputPasswordName));
         inputPassword.sendKeys(password);
+    }
+    public void assertionAlertMessage() {
+        WebElement alertMessage = driver.findElement(By.xpath(alertXpath));
+        String alertText = alertMessage.getText();
+        Assertions.assertEquals("Неверно указано имя пользователя или пароль.\n" + "Ok", alertText);
+
     }
 }
 

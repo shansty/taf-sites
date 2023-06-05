@@ -12,10 +12,20 @@ public class PizzatempoStep {
         page.sendKeysInputEmail(email);
         page.sendKeysInputPassword(password);
         page.clickSubmitSignInButton();
+        page.assertionAlertMessage();
     }
-    public void fillFormWithEmail(String email) {
+    public void fillFormWithEmailAndEmptyPassword(String email) {
         page.openURL();
         page.sendKeysInputEmail(email);
+        page.clickSubmitSignInButton();
+    }
+    public void fillFormWithPasswordAndEmptyEmail( String password) {
+        page.openURL();
+        page.sendKeysInputPassword(password);
+        page.clickSubmitSignInButton();
+    }
+    public void fillFormWithEmptyData() {
+        page.openURL();
         page.clickSubmitSignInButton();
     }
 }
