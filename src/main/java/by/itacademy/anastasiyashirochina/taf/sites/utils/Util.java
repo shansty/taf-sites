@@ -1,4 +1,4 @@
-package by.itacademy.anastasiyashirochina.taf.sites;
+package by.itacademy.anastasiyashirochina.taf.sites.utils;
 
 import com.github.javafaker.Faker;
 

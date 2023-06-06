@@ -1,13 +1,11 @@
 package by.itacademy.anastasiyashirochina.taf.sites;
 
+import by.itacademy.anastasiyashirochina.taf.sites.steps.PizzatempoStep;
+import by.itacademy.anastasiyashirochina.taf.sites.utils.Util;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class PizzatempoTest {

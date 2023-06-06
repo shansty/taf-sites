@@ -1,5 +1,6 @@
 package by.itacademy.anastasiyashirochina.taf.sites;
 
+import by.itacademy.anastasiyashirochina.taf.sites.pages.BookingPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

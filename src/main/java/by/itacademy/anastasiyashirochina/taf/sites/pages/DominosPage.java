@@ -1,4 +1,4 @@
-package by.itacademy.anastasiyashirochina.taf.sites;
+package by.itacademy.anastasiyashirochina.taf.sites.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

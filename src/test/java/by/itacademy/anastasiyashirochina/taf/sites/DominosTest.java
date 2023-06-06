@@ -1,5 +1,7 @@
 package by.itacademy.anastasiyashirochina.taf.sites;
 
+import by.itacademy.anastasiyashirochina.taf.sites.steps.DominosStep;
+import by.itacademy.anastasiyashirochina.taf.sites.utils.Util;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

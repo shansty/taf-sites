@@ -1,4 +1,4 @@
-package by.itacademy.anastasiyashirochina.taf.sites;
+package by.itacademy.anastasiyashirochina.taf.sites.pages;
 
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.Alert;
