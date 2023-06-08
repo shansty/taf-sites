@@ -13,6 +13,9 @@ public class PizzatempoPage {
     private String baseURL = "https://www.pizzatempo.by/";
     private ChromeDriver driver;
     private String alertXpath = "//div[@class = 'popupContent']";
+    public String popUpExpectedMessage = "Неверно указано имя пользователя или пароль.\n"+ "Ok";
+    public String alertExpectedMessage = "Заполните форму";
+
 
     public PizzatempoPage(ChromeDriver driver) {
         this.driver = driver;
@@ -37,17 +40,17 @@ public class PizzatempoPage {
         inputPassword.sendKeys(password);
     }
 
-    public void getAlertMessageAndAssert() {
+    public String getPopUpMessage() {
         WebElement alertMessage = driver.findElement(By.xpath(alertXpath));
-        String alertText = alertMessage.getText();
-        Assertions.assertEquals("Неверно указано имя пользователя или пароль.\n" + "Ok", alertText);
+        String popUpText = alertMessage.getText();
+        return popUpText;
     }
 
 
-    public void getAlertAndAssert() {
+    public String getAlertMessage() {
         Alert alert = driver.switchTo().alert();
-        String alertMessage = alert.getText();
-        Assertions.assertEquals("Заполните форму", alertMessage);
+        String alertText = alert.getText();
+        return alertText;
     }
 }
 
